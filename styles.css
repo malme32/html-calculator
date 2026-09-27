@@ -1,0 +1,149 @@
+:root {
+  color-scheme: dark;
+  --surface: #16181f;
+  --surface-raised: #22252f;
+  --key: #2b2f3b;
+  --key-active: #3a3f4f;
+  --text: #f4f6fb;
+  --text-muted: #9aa2b4;
+  --accent: #f7a33c;
+  --accent-text: #1c1c1c;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--surface);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 22rem;
+  padding: 1rem;
+  background: var(--surface-raised);
+  border-radius: 20px;
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.45);
+}
+
+.display {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 5.5rem;
+  padding: 0.75rem;
+  overflow: hidden;
+  background: #10121a;
+  border-radius: var(--radius);
+}
+
+.display__value {
+  --display-scale: 1;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  font-size: 3rem;
+  font-size: calc(3rem * var(--display-scale, 1));
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1.1;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.key {
+  min-height: 3.5rem;
+  padding: 0;
+  font: inherit;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--key);
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.key:hover {
+  background: var(--key-active);
+}
+
+.key:active {
+  background: var(--key-active);
+  transform: translateY(1px);
+}
+
+.key:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.key--fn {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.key--op {
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.key--wide {
+  grid-column: span 2;
+}
+
+.key--eq {
+  font-size: 1.5rem;
+  color: var(--accent-text);
+  background: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key {
+    transition: none;
+  }
+
+  .key:active {
+    transform: none;
+  }
+}
